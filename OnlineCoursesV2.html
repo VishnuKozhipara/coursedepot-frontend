@@ -202,7 +202,29 @@
                 showCheckout() {
                     this.showLesson = this.showLesson ? false : true;
                 },
-                
+                submitForm(order) {
+                    this.order['proder'].push(this.cart)
+                    fetch('http://localhost:3000/collection/proder', {
+                        method: 'POST', // set the HTTP method as 'POST'
+                        headers: {
+                            'Content-Type': 'application/json', // set the data type as JSON
+                        },
+                        body: JSON.stringify(this.order), // need to stringify the JSON object
+                    });
+                    for (let i = 0; i < this.cart.length; i++) {
+                        id = this.cart[i]._id;
+                        quantity = this.cart[i].newSpaces ;
+                        fetch('http://localhost:3000/collection/lessons/'+id, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type' : 'application/json',
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        body: JSON.stringify({"spaces":quantity}),
+                    });
+                    };
+            },
+
 
                 canAddToCart(lesson) {
                     return lesson.spaces > this.cartCount(lesson);
