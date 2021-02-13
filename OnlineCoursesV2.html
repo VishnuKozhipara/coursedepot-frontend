@@ -171,6 +171,18 @@
                 showLesson: true,
                 sortOrder: '',
             },
+
+            created: function () {
+                fetch('http://localhost:3000/collection/lessons').then(
+                    function (response) {
+                        response.json().then(
+                            function (json) {
+                                console.log('fetch completed')
+                                // save the returned JSON object to 'product'// note that we used 'app.product' instead of 'this.product'
+                                webstore.lesson = json;
+                            });
+                    })
+            },
            
 
             methods: {
