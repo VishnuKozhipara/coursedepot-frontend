@@ -173,7 +173,7 @@
             },
 
             created: function () {
-                fetch('http://localhost:3000/collection/lessons').then(
+                fetch('https://vuejscoursedepot.herokuapp.com/').then(
                     function (response) {
                         response.json().then(
                             function (json) {
@@ -204,7 +204,7 @@
                 },
                 submitForm(order) {
                     this.order['proder'].push(this.cart)
-                    fetch('http://localhost:3000/collection/proder', {
+                    fetch('https://vuejscoursedepot.herokuapp.com/', {
                         method: 'POST', // set the HTTP method as 'POST'
                         headers: {
                             'Content-Type': 'application/json', // set the data type as JSON
@@ -214,7 +214,7 @@
                     for (let i = 0; i < this.cart.length; i++) {
                         id = this.cart[i]._id;
                         quantity = this.cart[i].newSpaces ;
-                        fetch('http://localhost:3000/collection/lessons/'+id, {
+                        fetch('https://vuejscoursedepot.herokuapp.com/'+id, {
                         method: 'PUT',
                         headers: {
                             'Content-Type' : 'application/json',
